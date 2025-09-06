@@ -34,8 +34,7 @@ SpinRent is a comprehensive rental marketplace application that allows users to 
 - **Communication**
   - Email notifications for bookings
   - Automated status updates
-  - User messaging system
-
+  
 - **File Management**
   - Secure file upload functionality
   - Image optimization and storage
