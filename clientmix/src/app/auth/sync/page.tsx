@@ -4,6 +4,16 @@ import { useRouter } from "next/navigation";
 import { useAuth, useUser } from "@clerk/nextjs";
 import axios from "axios";
 
+
+type FormErrors = {
+  phoneNumber?: string;
+  addressLine1?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+};
+
 const SyncPage = () => {
   const router = useRouter();
   const { getToken, isSignedIn } = useAuth();
@@ -20,7 +30,8 @@ const SyncPage = () => {
     country: ""
   });
   
-  const [errors, setErrors] = useState({});
+ const [errors, setErrors] = useState<FormErrors>({});
+
 
   useEffect(() => {
     const syncAuth = async () => {
@@ -63,7 +74,7 @@ const SyncPage = () => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: { [key: string]: string } = {};
     
     if (!formData.phoneNumber.trim()) {
       newErrors.phoneNumber = "Phone number is required";
@@ -95,7 +106,7 @@ const SyncPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -103,7 +114,7 @@ const SyncPage = () => {
     }));
     
     // Clear error when user starts typing
-    if (errors[name]) {
+    if (name in errors) {
       setErrors(prev => ({
         ...prev,
         [name]: ""
@@ -111,7 +122,7 @@ const SyncPage = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!validateForm()) {
