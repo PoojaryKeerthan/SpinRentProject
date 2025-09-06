@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Essential Initial Adjustments */
+
+
+
+
+
+Reset & Base
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700; /* Bold for headings */
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-geologica), sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  background: #000000;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+/* Layout Utilities */
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section Spacing */
+.section-py {
+  padding: 4rem 0;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .section-py {
+    padding: 2rem 0;
+  }
+  
+  .container-custom {
+    padding: 0 0.75rem;
+  }
+}
